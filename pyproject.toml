@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "vldb"
+version = "0.1.0"
+description = ""
+authors = ["fabianhe <39628987+fabianhe@users.noreply.github.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^1.2.4"
+jupyterlab = "^3.0.15"
+openpyxl = "^3.0.7"
+SQLAlchemy = {extras = ["mypy"], version = "^1.4.18"}
+asyncpg = "^0.23.0"
+uvloop = "^0.15.2"
+tqdm = "^4.61.1"
+matplotlib = "^3.4.2"
+seaborn = "^0.11.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+black = "^21.5b1"
+mypy = "^0.812"
+flake8 = "^3.9.2"
+nb-black = "^1.0.7"
+pre-commit = "^2.13.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
