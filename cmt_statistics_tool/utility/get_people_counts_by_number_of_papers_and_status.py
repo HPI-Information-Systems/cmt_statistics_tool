@@ -1,3 +1,4 @@
+"""Gets the people counts by number of papers and status."""
 from asyncio import gather, run
 from typing import Tuple, Type, Union
 

@@ -1,3 +1,5 @@
+"""Gets all accepted papers"""
+
 from asyncio import run
 
 from pandas import DataFrame

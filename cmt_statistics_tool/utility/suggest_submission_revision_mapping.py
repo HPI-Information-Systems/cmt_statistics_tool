@@ -1,3 +1,4 @@
+"""Suggest a mapping between submissions needing a revision and revisions."""
 from asyncio import gather, run
 from functools import reduce
 from operator import add

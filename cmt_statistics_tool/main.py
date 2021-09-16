@@ -1,3 +1,11 @@
+"""
+Main entrypoint to create the database.
+
+Running this will delete all tables, create them, and insert all data.
+If your DB lives elsewhere, please change the connection string in the tables module.
+If your files are named differently, please change them here.
+"""
+
 from asyncio import run
 
 from sqlalchemy.schema import CreateTable

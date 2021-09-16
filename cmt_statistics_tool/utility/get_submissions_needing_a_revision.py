@@ -1,3 +1,4 @@
+"""Get all submissions that need a revision but have none."""
 from asyncio import run
 
 from pandas import DataFrame

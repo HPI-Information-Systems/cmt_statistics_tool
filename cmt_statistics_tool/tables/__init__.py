@@ -24,7 +24,9 @@ from cmt_statistics_tool.tables.seniormetareview import (  # noqa: E402
 )
 
 engine = create_async_engine(
-    "postgresql+asyncpg://postgres:root@localhost/cmt_statistics_tool", echo=False
+    # Please change this connection string to your specification
+    "postgresql+asyncpg://postgres:root@localhost/cmt_statistics_tool",
+    echo=False,
 )
 async_session = sessionmaker(
     engine, expire_on_commit=False, class_=AsyncSession, autoflush=False

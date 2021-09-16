@@ -1,3 +1,4 @@
+"""Gets all papers where the title or authors changed from submission to revision."""
 from asyncio import gather, run
 from collections import defaultdict
 from typing import Dict, Iterable, Tuple
