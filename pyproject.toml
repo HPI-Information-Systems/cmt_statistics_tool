@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "vldb"
+name = "cmt_statistics_tool"
 version = "0.1.0"
 description = ""
 authors = ["fabianhe <39628987+fabianhe@users.noreply.github.com>"]

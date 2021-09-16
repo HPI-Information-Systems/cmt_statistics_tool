@@ -1,4 +1,4 @@
-from vldb import __version__
+from cmt_statistics_tool import __version__
 
 
 def test_version() -> None:

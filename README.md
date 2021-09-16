@@ -1,6 +1,6 @@
-# VLDB Statistics Tool
+# CMT Statistics Tool
 
-[![Tokei](https://tokei.rs/b1/github/fabianhe/vldb)](https://tokei.rs)
+[![Tokei](https://tokei.rs/b1/github/fabianhe/cmt_statistics_tool)](https://tokei.rs)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 This repository is based on initial work by Anna and [Magda Balazinska](https://www.cs.washington.edu/people/faculty/magda) for [VLDB 2020](https://vldb2020.org/).
