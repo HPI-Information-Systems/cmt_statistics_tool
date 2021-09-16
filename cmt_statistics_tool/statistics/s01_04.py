@@ -9,7 +9,7 @@ from sqlalchemy import func
 from sqlalchemy.future import select
 from uvloop import install
 
-from cmt_statistics_tool.statistics import get_data, test_plot_df
+from cmt_statistics_tool.statistics import get_data, plot_df
 from cmt_statistics_tool.tables import Revision, Submission
 
 
@@ -116,10 +116,10 @@ async def main() -> Tuple[DataFrame, DataFrame, DataFrame]:
 if __name__ == "__main__":
     install()
     s_df, r_df, b_df = run(main())
-    test_plot_df(s_df, plot_submission)
+    plot_df(s_df, plot_submission)
     plt.savefig("plots/01_04_submission.png")
-    test_plot_df(r_df, plot_revision)
+    plot_df(r_df, plot_revision)
     plt.savefig("plots/01_04_revision.png")
-    test_plot_df(b_df, plot_both)
+    plot_df(b_df, plot_both)
     plt.savefig("plots/01_04_both.png")
     print(s_df, r_df, b_df, sep="\n")

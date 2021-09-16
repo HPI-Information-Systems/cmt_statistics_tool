@@ -11,7 +11,7 @@ from sqlalchemy.future import select
 from sqlalchemy.sql.selectable import Select
 from uvloop import install
 
-from cmt_statistics_tool.statistics import format_sort_track, get_data, test_plot_df
+from cmt_statistics_tool.statistics import format_sort_track, get_data, plot_df
 from cmt_statistics_tool.tables import Revision, Submission
 
 
@@ -59,12 +59,12 @@ async def main() -> Tuple[DataFrame, DataFrame]:
 if __name__ == "__main__":
     install()
     s_df, r_df = run(main())
-    test_plot_df(s_df, plot_submission)
+    plot_df(s_df, plot_submission)
     plt.savefig("plots/01_03_submission.png")
-    test_plot_df(r_df, plot_revision)
+    plot_df(r_df, plot_revision)
     plt.savefig("plots/01_03_revision.png")
     print(s_df, r_df, sep="\n")
-    test_plot_df(
+    plot_df(
         s_df.set_index("Track")
         .rename(columns={"Count": "Original Submission"})
         .join(

@@ -9,7 +9,7 @@ from sqlalchemy import func
 from sqlalchemy.future import select
 from uvloop import install
 
-from cmt_statistics_tool.statistics import get_data, test_plot_df
+from cmt_statistics_tool.statistics import get_data, plot_df
 from cmt_statistics_tool.tables import SubmissionReview
 
 
@@ -50,6 +50,6 @@ def plot(df: DataFrame, ax: Axes) -> None:
 if __name__ == "__main__":
     install()
     df = run(main())
-    fig = test_plot_df(df, plot)
+    fig = plot_df(df, plot)
     plt.savefig("plots/01_01.png")
     print(df)

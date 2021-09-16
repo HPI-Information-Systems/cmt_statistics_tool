@@ -12,7 +12,7 @@ from sqlalchemy import func, literal, text
 from sqlalchemy.future import select
 from uvloop import install
 
-from cmt_statistics_tool.statistics import get_data, test_plot_df
+from cmt_statistics_tool.statistics import get_data, plot_df
 from cmt_statistics_tool.tables import Revision, Submission
 from cmt_statistics_tool.tables.people import PeoplePaperRelation as ppr
 from cmt_statistics_tool.tables.people import RevisionPeople, SubmissionPeople
@@ -212,9 +212,9 @@ if __name__ == "__main__":
     s_df, r_df, b_df = run(main())
 
     print(s_df, r_df, b_df, sep="\n")
-    test_plot_df(s_df, plot_submission)
+    plot_df(s_df, plot_submission)
     plt.savefig("plots/02_04_submission.png")
-    test_plot_df(r_df, plot_revision)
+    plot_df(r_df, plot_revision)
     plt.savefig("plots/02_04_revision.png")
-    test_plot_df(b_df, plot_both)
+    plot_df(b_df, plot_both)
     plt.savefig("plots/02_04_both.png")

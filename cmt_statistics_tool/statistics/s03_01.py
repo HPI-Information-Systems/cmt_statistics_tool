@@ -10,7 +10,7 @@ from sqlalchemy import func, literal
 from sqlalchemy.future import select
 from uvloop import install
 
-from cmt_statistics_tool.statistics import get_data, test_plot_df
+from cmt_statistics_tool.statistics import get_data, plot_df
 from cmt_statistics_tool.tables import (
     People,
     Revision,
@@ -122,5 +122,5 @@ if __name__ == "__main__":
     install()
     b_df = run(main())
     print(b_df, sep="\n")
-    test_plot_df(b_df, plot_both)
+    plot_df(b_df, plot_both)
     plt.savefig("plots/03_01_both.png")

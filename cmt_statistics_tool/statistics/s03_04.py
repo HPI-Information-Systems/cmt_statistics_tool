@@ -6,7 +6,7 @@ from matplotlib.axes import Axes
 from pandas import DataFrame, concat
 from uvloop import install
 
-from cmt_statistics_tool.statistics import test_plot_df
+from cmt_statistics_tool.statistics import plot_df
 from cmt_statistics_tool.statistics.s03_02 import both
 
 
@@ -40,5 +40,5 @@ if __name__ == "__main__":
     install()
     b_df = run(main())
     print(b_df, sep="\n")
-    test_plot_df(b_df, plot_both)
+    plot_df(b_df, plot_both)
     plt.savefig("plots/03_04_both.png")
