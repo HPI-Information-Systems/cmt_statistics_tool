@@ -15,10 +15,10 @@ This repository is based on initial work by Anna and [Magda Balazinska](https://
 
 The project is structured into tables, insert, statistics and utility.
 
-- The `tables` files are an ORM definition of the database tables.
-- The `insert` files contain the logic of importing the CMT exports.
-- The `statistics` files derive statistics as tables and plots from the data.
-- The `utility` files contain other helpful queries.
+- The [`tables`](cmt_statistics_tool/tables) files are an ORM definition of the database tables.
+- The [`insert`](cmt_statistics_tool/insert) files contain the logic of importing the CMT exports.
+- The [`statistics`](cmt_statistics_tool/statistics) files derive statistics as tables and plots from the data.
+- The [`utility`](cmt_statistics_tool/utility) files contain other helpful queries.
 
 ### Required Data
 
@@ -37,20 +37,20 @@ Please convert them to `.xlsx` beforehand, for example by using Excel's "Save As
 ### Statistics
 
 1. Reviewers and ratings
-   - Expertise Level vs Rating: `s01_01.py`
-   - Acceptance Rate over Time: `s01_02.py`
-   - Number of Submissions/Revisions over time: `s01_03.py`
-   - Fraction of accepted or to be revised Papers per Paper Category: `s01_04.py`
+   - Expertise Level vs Rating: [`s01_01.py`](cmt_statistics_tool/statistics/s01_01.py)
+   - Acceptance Rate over Time: [`s01_02.py`](cmt_statistics_tool/statistics/s01_02.py)
+   - Number of Submissions/Revisions over time: [`s01_03.py`](cmt_statistics_tool/statistics/s01_03.py)
+   - Fraction of accepted or to be revised Papers per Paper Category: [`s01_04.py`](cmt_statistics_tool/statistics/s01_04.py)
 2. Paper status
-   - Status of papers per category: `s02_01.py`
-   - Status of papers: `s02_02.py`
-   - Status of papers per primary subject area: `s02_03.py`
-   - Status of papers per number of authors: `s02_04.py`
+   - Status of papers per category: [`s02_01.py`](cmt_statistics_tool/statistics/s02_01.py)
+   - Status of papers: [`s02_02.py`](cmt_statistics_tool/statistics/s02_02.py)
+   - Status of papers per primary subject area: [`s02_03.py`](cmt_statistics_tool/statistics/s02_03.py)
+   - Status of papers per number of authors: [`s02_04.py`](cmt_statistics_tool/statistics/s02_04.py)
 3. Other
-   - Number of papers per distinct affiliations (email domains): `s03_01.py`
-   - Number of papers per country/region: `s03_02.py`
-   - Number of accepted papers per email domain: `s03_03.py`
-   - Number of papers per country/region (pie): `s03_04.py`
+   - Number of papers per distinct affiliations (email domains): [`s03_01.py`](cmt_statistics_tool/statistics/s03_01.py)
+   - Number of papers per country/region: [`s03_02.py`](cmt_statistics_tool/statistics/s03_02.py)
+   - Number of accepted papers per email domain: [`s03_03.py`](cmt_statistics_tool/statistics/s03_03.py)
+   - Number of papers per country/region (pie): [`s03_04.py`](cmt_statistics_tool/statistics/s03_04.py)
 
 ## Setup
 
