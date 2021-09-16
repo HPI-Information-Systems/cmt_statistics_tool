@@ -1,3 +1,6 @@
+"""
+Insert the reviews file into the DB.
+"""
 from tqdm import tqdm
 
 from cmt_statistics_tool.helper import fillna_strs, get_or_add, read_original_revision
@@ -26,7 +29,7 @@ async def insert_reviews(file: str) -> None:
         ],
     )
     async with async_session() as session:
-        for _, row in tqdm(
+        for _, row in tqdm(  # Add reviews on submissions
             original.iterrows(), desc="Reviews Submissions", total=len(original)
         ):
             async with session.begin():
@@ -85,7 +88,7 @@ async def insert_reviews(file: str) -> None:
                     ],
                 )
                 session.add(submission)
-        for _, row in tqdm(
+        for _, row in tqdm(  # Add reviews on revisions
             revision.iterrows(), desc="Reviews Revisions", total=len(revision)
         ):
             async with session.begin():

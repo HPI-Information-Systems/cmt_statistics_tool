@@ -1,3 +1,6 @@
+"""
+Insert the metareviews file into the DB.
+"""
 from tqdm import tqdm
 
 from cmt_statistics_tool.helper import fillna_strs, get_or_add, read_original_revision
@@ -13,7 +16,7 @@ async def insert_metareviews(file: str) -> None:
     original = fillna_strs(original, ["Q3 (Revision Items)"])
     revision = fillna_strs(revision, [])
     async with async_session() as session:
-        for _, row in tqdm(
+        for _, row in tqdm(  # Insert all metareviews on submissions
             original.iterrows(), desc="MetaReviews Submissions", total=len(original)
         ):
             async with session.begin():
@@ -32,7 +35,7 @@ async def insert_metareviews(file: str) -> None:
                     revision_items=row["Q3 (Revision Items)"],
                 )
                 session.add(submission)
-        for _, row in tqdm(
+        for _, row in tqdm(  # Insert all metareviews on revisions
             revision.iterrows(), desc="MetaReviews Revisions", total=len(revision)
         ):
             async with session.begin():

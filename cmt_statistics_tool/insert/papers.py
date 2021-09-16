@@ -1,3 +1,6 @@
+"""
+Insert the papers file into the DB.
+"""
 from re import compile as re_compile
 from typing import List, Tuple
 
@@ -21,6 +24,11 @@ name_affiliation_pattern = re_compile(r"(?P<name>[^(]*) \((?P<affiliation>.*)\)"
 def separate_name_affiliation_email(
     names_and_affiliations: str, emails: str
 ) -> Tuple[Tuple[str, str, str], ...]:
+    """
+    Separate a string containing names and affiliations and a string containing emails.
+
+    The resulting format is name, affiliation, email.
+    """
     result = []
     for name, email in zip(
         names_and_affiliations.strip().split(";"), emails.strip().split(";")
@@ -39,6 +47,11 @@ def separate_name_affiliation_email(
 async def extract_and_add_people(
     session: AsyncSession, names: str, emails: str
 ) -> List[Tuple[int, People]]:
+    """
+    Given a string of names with affiliations and a string of emails,
+    separate them into their components, add all non-existent people to the DB
+    and return all people.
+    """
     return [
         (position, await get_or_add(session, name, email, affiliation))
         for position, (name, affiliation, email) in enumerate(
@@ -80,7 +93,7 @@ async def insert_papers(file: str) -> None:
         ],
     )
     async with async_session() as session:
-        for _, row in tqdm(
+        for _, row in tqdm(  # Add all submissions
             original.iterrows(), desc="Submissions", total=len(original)
         ):
             async with session.begin():
@@ -149,7 +162,9 @@ async def insert_papers(file: str) -> None:
                     ]
                 )
     async with async_session() as session:
-        for _, row in tqdm(revision.iterrows(), desc="Revisions", total=len(revision)):
+        for _, row in tqdm(  # Add all revisions
+            revision.iterrows(), desc="Revisions", total=len(revision)
+        ):
             async with session.begin():
                 authors = await extract_and_add_people(
                     session, row["Authors"], row["Author Emails"]

@@ -1,3 +1,8 @@
+"""
+Insert the submission_revisions_mapping file into the DB.
+
+This is used for manually mapping submission ids and revision ids.
+"""
 from pandas import read_excel
 from sqlalchemy import bindparam, update
 

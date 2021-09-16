@@ -1,4 +1,4 @@
-"""Insert the people export INCLUDING country information.
+"""Insert the people file including country information into the DB.
 
 Available columns:
 First Name
@@ -21,6 +21,7 @@ from cmt_statistics_tool.tables import async_session
 
 
 def agg_name(x: Series) -> str:
+    """Construct a name from its components."""
     f_name = x["First Name"].strip()
     m_name = x["Middle Initial (optional)"].strip()
     l_name = x["Last Name"].strip()
@@ -41,7 +42,7 @@ async def insert_people(file: str) -> None:
 
     df["Name"] = df.agg(agg_name, axis=1)
     async with async_session() as session:
-        for _, row in tqdm(
+        for _, row in tqdm(  # insert all people
             df[["Name", "E-mail", "Organization", "Country"]].iterrows(),
             desc="People",
             total=len(df),
