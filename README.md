@@ -1,5 +1,6 @@
 # CMT Statistics Tool
 
+[![CI workflow](https://github.com/fabianhe/cmt_statistics_tool/actions/workflows/test.yaml/badge.svg)](https://github.com/fabianhe/cmt_statistics_tool/actions/workflows/test.yaml)
 [![Tokei](https://tokei.rs/b1/github/fabianhe/cmt_statistics_tool)](https://tokei.rs)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
