@@ -1,4 +1,4 @@
-# CMT Statistics Tool
+# CMTStat: CMT Statistics Tool
 
 [![CI workflow](https://github.com/fabianhe/cmt_statistics_tool/actions/workflows/test.yaml/badge.svg)](https://github.com/fabianhe/cmt_statistics_tool/actions/workflows/test.yaml)
 [![Tokei](https://tokei.rs/b1/github/fabianhe/cmt_statistics_tool)](https://tokei.rs)
