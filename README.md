@@ -4,15 +4,15 @@
 [![Tokei](https://tokei.rs/b1/github/fabianhe/cmt_statistics_tool)](https://tokei.rs)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-The conference management tool [CMT](https://cmt3.research.microsoft.com/), hosted by Microsoft Research, is a popular tool to manage submissions, the reviewing process, and camrea-ready-copy preparation for scientific conferences. CMT provides various CSV and XLSX export capabilities about papers, reviewers, authors, etc.
+The conference management tool [CMT](https://cmt3.research.microsoft.com/), hosted by Microsoft Research, is a popular tool to manage submissions, the reviewing process, and camrea-ready-copy preparation for scientific conferences. CMT provides various CSV and XLS export capabilities about papers, reviewers, authors, etc.
 
-The CMT Statistics Tool is a Python application and PostgreSQL database for importing such CMT data, deriving statistics and running utility queries.
-By harmonizing CMT exports into a common schema, it enables deep analysis of conferences.
+The CMT Statistics Tool is a Python application and PostgreSQL database for importing such CMT data, deriving and plotting various statistics and running utility queries.
+By harmonizing CMT exports into a common schema, it enables deep analysis of conference submissions.
 Common use cases, such as viewing submissions by date, country, affiliation, or finding differences in acceptance rates over time are included.
 The easiest way to get started using the CMT Statistics Tool for your conference is by forking this repository and going through the Setup below.
 
 This repository is based on initial work by Anna and [Magda Balazinska](https://www.cs.washington.edu/people/faculty/magda) for [PVLDB](http://vldb.org/pvldb/) volume 13 and [VLDB 2020](https://vldb2020.org/).
-It was extended and refined at [HPI](https://hpi.de/) for PVLDB volume 14 and [VLDB 2021](https://vldb.org/2021/).
+It was extended and refined at [HPI](https://hpi.de/) for PVLDB volume 14 and [VLDB 2021](https://vldb.org/2021/). Its current form is intended to be as general as possible, but as each conference is different, slight adaptations will be necessary.
 
 ## Organization
 
@@ -25,7 +25,7 @@ The project is structured into tables, insert, statistics and utility.
 
 ### Required Data
 
-Please export the following data:
+Please export the following Excel data from CMT:
 
 - `people`: A single file containing all people participating
 - `papers`: A single file containing all research tracks and revisions
@@ -40,7 +40,7 @@ Please convert them to `.xlsx` beforehand, for example by using Excel's "Save As
 ### Statistics
 
 1. Reviewers and ratings
-   - Expertise Level vs Rating: [`s01_01.py`](cmt_statistics_tool/statistics/s01_01.py)
+   - Expertise Level vs. Rating: [`s01_01.py`](cmt_statistics_tool/statistics/s01_01.py)
    - Acceptance Rate over Time: [`s01_02.py`](cmt_statistics_tool/statistics/s01_02.py)
    - Number of Submissions/Revisions over time: [`s01_03.py`](cmt_statistics_tool/statistics/s01_03.py)
    - Fraction of accepted or to be revised Papers per Paper Category: [`s01_04.py`](cmt_statistics_tool/statistics/s01_04.py)
