@@ -14,6 +14,15 @@ The easiest way to get started using the CMT Statistics Tool for your conference
 This repository is based on initial work by Anna and [Magda Balazinska](https://www.cs.washington.edu/people/faculty/magda) for [PVLDB](http://vldb.org/pvldb/) volume 13 and [VLDB 2020](https://vldb2020.org/).
 It was extended and refined at [HPI](https://hpi.de/) for PVLDB volume 14 and [VLDB 2021](https://vldb.org/2021/). Its current form is intended to be as general as possible, but as each conference is different, slight adaptations will be necessary.
 
+## Getting started
+
+1. Fork this repository
+2. Clone your repository
+3. [Setup](#setup) your environment
+4. [Customize your insert logic and table schema](#schema)
+5. Import the [required data](#required-data)
+6. Run the [statistics](#statistics) or utilities you are interested in
+
 ## Organization
 
 The project is structured into tables, insert, statistics and utility.
@@ -94,3 +103,105 @@ Please note that, depending on whether you use Jupyter Notebooks or Jupyter lab,
 
 For the PostgreSQL instance, you're free to connect any instance you already have in the `tables/__init__.py` connection string.
 If you wish to setup PostgreSQL from scratch, we recommend a [Docker setup](https://hub.docker.com/_/postgres/).
+
+## Schema
+
+If your export columns are named differently than the schema, you must change the [insert logic](cmt_statistics_tool/insert).
+If you have additional columns or do not have some columns in your export, you must change the [insert logic](cmt_statistics_tool/insert) as well as the [table schema](cmt_statistics_tool/tables).
+For each of the following files, a script dealing with the insert is in the [insert directory](cmt_statistics_tool/insert).
+Currently, the schema of the required data is as follows:
+
+- People: TSV file
+  - First Name
+  - Middle Initial (optional)
+  - Last Name
+  - E-mail
+  - Organization
+  - Country
+  - Google Scholar
+  - URL
+  - Semantic Scholar URL
+  - DBLP URL
+  - Domain Conflicts
+- Papers: XLSX file with multiple sheets. Sheet names correspond to track names, revision tracks have the Suffix "Revision".
+  - Paper ID
+  - Created
+  - Last Modified
+  - Paper Title
+  - Abstract
+  - Primary Contact Author Name
+  - Primary Contact Author Email
+  - Authors
+  - Author Names
+  - Author Emails
+  - Track Name
+  - Primary Subject Area
+  - Secondary Subject Areas
+  - Conflicts
+  - Domains
+  - Assigned
+  - Completed
+  - % Completed
+  - Bids
+  - Discussion
+  - Status
+  - Requested For Author Feedback
+  - Author Feedback Submitted?
+  - Requested For Camera Ready
+  - Camera Ready Submitted?
+  - Requested For Presentation
+  - Files
+  - Number of Files
+  - Supplementary Files
+  - Number of Supplementary Files
+  - Reviewers
+  - Reviewer Emails
+  - MetaReviewers
+  - MetaReviewer Emails
+  - SeniorMetaReviewers
+  - SeniorMetaReviewerEmails
+  - Q1 (PVLDB does not allow papers previously rejected from PVLDB to be resubmitted within 12 months of the original submission date.)
+  - Q3 (Conflict)
+  - Q4 (Special category)
+  - Q7 (Authors)
+  - Q8 (Availability and Reproducibility)
+- Reviews: XLSX file with multiple sheets. Sheet names correspond to track names, revision tracks have the Suffix "Revision".
+  - Paper ID
+  - Paper Title
+  - Reviewer Name
+  - Reviewer Email
+  - Q1 (Overall Rating)
+  - Q1 (Overall Rating - Value)
+  - Q2 (Relevant for PVLDB)
+  - Q3 (Are there specific revisions that could raise your overall rating?)
+  - Q4 (Flavor of Regular Research Paper. Please indicate which flavor or flavors best describe the paper.)
+  - Q5 (Summary of the paper (what is being proposed and in what context) and a brief justification of your overall recommendation. One solid paragraph.)
+  - Q6 (Three (or more) strong points about the paper. Please be precise and explicit; clearly explain the value and nature of the contribution.)
+  - Q7 (Three (or more) weak points about the paper. Please clearly indicate whether the paper has any mistakes, missing related work, or results that cannot be considered a contribution; write it so that the authors can understand what is seen as negative.)
+  - Q8 (Novelty. Please give a high novelty ranking to papers on new topics, opening new fields, or proposing truly new ideas; assign medium ratings to delta papers and papers on well-known topics but still with some valuable contribution.)
+  - Q9 (Significance)
+  - Q10 (Technical Depth and Quality of Content)
+  - Q11 (Experiments)
+  - Q12 (Presentation)
+  - Q13 (Detailed Evaluation (Contribution, Pros/Cons, Errors); please number each point and please provide as constructive feedback as possible.)
+  - Q14 (Reproducibility. If the authors have provided supplemental material (data, code, etc.), is the information likely to be sufficient to understand and to reproduce the experiments? Otherwise, do the authors provide sufficient technical details in the paper to support reproducibility? Note that we do not expect actual reproducibility experiments, but rather a verification that the material is reasonable in scope and content.)
+  - Q15 (Revision. If revision is required, list specific required revisions you seek from the authors. Please number each point.)
+  - Q16 (Rate your confidence in this review.)
+  - Q16 (Rate your confidence in this review. - Value)
+  - Q17 (Confidential comments for the PC Chairs. Please add any information that may help us reach a decision.)
+  - Q18 (Name and affiliation of external expert (!) reviewer (if applicable).)
+  - Q19 (I understand that I am allowed to discuss a paper submission with a trainee for the purpose of teaching them how to review papers. I understand that (a) I am responsible to ensure that there is no COI according to the rules published at PVLDB.org between the trainee and any of the authors of the paper. (b) I have informed the trainee about the confidentiality of the content of the paper. (c) I am solely responsible for the final review. [If the trainee contributed significantly to the paper review, please list them above as external reviewer].)
+- Metareviews: XLSX file with multiple sheets. Sheet names correspond to track names, revision tracks have the Suffix "Revision".
+  - Paper ID
+  - Paper Title
+  - Meta-Reviewer Name
+  - Meta-Reviewer Email
+  - Q1 (Overall Rating)
+  - Q1 (Overall Rating - Value)
+  - Q2 (Summary Comments)
+- Seniormetareviews: XLSX file with multiple sheets. Sheet names correspond to track names, revision tracks have the Suffix "Revision".
+  - currently not used
+- Mapping: XLSX file
+  - Revision ID
+  - OriginalSubmission ID
+  - Revision Title
