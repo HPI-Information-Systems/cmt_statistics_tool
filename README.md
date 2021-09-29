@@ -16,53 +16,12 @@ It was extended and refined at [HPI](https://hpi.de/) for PVLDB volume 14 and [V
 
 ## Getting started
 
-1. Fork this repository
-2. Clone your repository
-3. [Setup](#setup) your environment
+1. Fork and clone this repository
+2. [Setup](#setup) your environment
+3. Export the [required data](#required-data) from CMT
 4. [Customize your insert logic and table schema](#schema)
-5. Import the [required data](#required-data)
+5. [Import](#import) the required data
 6. Run the [statistics](#statistics) or utilities you are interested in
-
-## Organization
-
-The project is structured into tables, insert, statistics and utility.
-
-- The [`tables`](cmt_statistics_tool/tables) files are an ORM definition of the database tables.
-- The [`insert`](cmt_statistics_tool/insert) files contain the logic of importing the CMT exports.
-- The [`statistics`](cmt_statistics_tool/statistics) files derive statistics as tables and plots from the data.
-- The [`utility`](cmt_statistics_tool/utility) files contain other helpful queries.
-
-### Required Data
-
-Please export the following Excel data from CMT:
-
-- `people`: A single file containing all people participating
-- `papers`: A single file containing all research tracks and revisions
-- `reviews` A single file containing all reviews on all tracks and revisions
-- `metareviews` A single file containing all metareviews on all tracks and revisions (if applicable)
-- `seniormetareviews` A single file containing all seniormetareviews on all tracks and revisions (if applicable)
-- `mapping` A single file containing special mappings from original submissions to revisions (if applicable)
-
-Note that CMT exports `.xls` files.
-Please convert them to `.xlsx` beforehand, for example by using Excel's "Save As ..." function.
-
-### Statistics
-
-1. Reviewers and ratings
-   - Expertise Level vs. Rating: [`s01_01.py`](cmt_statistics_tool/statistics/s01_01.py)
-   - Acceptance Rate over Time: [`s01_02.py`](cmt_statistics_tool/statistics/s01_02.py)
-   - Number of Submissions/Revisions over time: [`s01_03.py`](cmt_statistics_tool/statistics/s01_03.py)
-   - Fraction of accepted or to be revised Papers per Paper Category: [`s01_04.py`](cmt_statistics_tool/statistics/s01_04.py)
-2. Paper status
-   - Status of papers per category: [`s02_01.py`](cmt_statistics_tool/statistics/s02_01.py)
-   - Status of papers: [`s02_02.py`](cmt_statistics_tool/statistics/s02_02.py)
-   - Status of papers per primary subject area: [`s02_03.py`](cmt_statistics_tool/statistics/s02_03.py)
-   - Status of papers per number of authors: [`s02_04.py`](cmt_statistics_tool/statistics/s02_04.py)
-3. Other
-   - Number of papers per distinct affiliations (email domains): [`s03_01.py`](cmt_statistics_tool/statistics/s03_01.py)
-   - Number of papers per country/region: [`s03_02.py`](cmt_statistics_tool/statistics/s03_02.py)
-   - Number of accepted papers per email domain: [`s03_03.py`](cmt_statistics_tool/statistics/s03_03.py)
-   - Number of papers per country/region (pie): [`s03_04.py`](cmt_statistics_tool/statistics/s03_04.py)
 
 ## Setup
 
@@ -103,6 +62,21 @@ Please note that, depending on whether you use Jupyter Notebooks or Jupyter lab,
 
 For the PostgreSQL instance, you're free to connect any instance you already have in the `tables/__init__.py` connection string.
 If you wish to setup PostgreSQL from scratch, we recommend a [Docker setup](https://hub.docker.com/_/postgres/).
+
+## Required Data
+
+Please export the following Excel data from CMT:
+
+- `people`: A single file containing all people participating
+- `papers`: A single file containing all research tracks and revisions
+- `reviews` A single file containing all reviews on all tracks and revisions
+- `metareviews` A single file containing all metareviews on all tracks and revisions (if applicable)
+- `seniormetareviews` A single file containing all seniormetareviews on all tracks and revisions (if applicable)
+- `mapping` A single file containing special mappings from original submissions to revisions (if applicable)
+
+The schemata of these exports are described [below](#schema).
+Note that CMT exports `.xls` files.
+Please convert them to `.xlsx` beforehand, for example by using Excel's "Save As ..." function.
 
 ## Schema
 
@@ -205,3 +179,38 @@ Currently, the schema of the required data is as follows:
   - Revision ID
   - OriginalSubmission ID
   - Revision Title
+
+# Import
+
+The main entrypoint for building the tables and importing the data is the [`main.py`](cmt_statistics_tool/main.py) file.
+Running it will delete all tables, create them, and insert all data.
+There, you can define the names of the files containing the exported data.
+Your database connection is configured in the [`tables/__init__.py`](cmt_statistics_tool/tables/__init__.py) file.
+Its default of `postgres:root@localhost/cmt_statistics_tool` is intended only for testing purposes.
+
+## Organization
+
+The project is structured into tables, insert, statistics and utility.
+
+- The [`tables`](cmt_statistics_tool/tables) files are an ORM definition of the database tables.
+- The [`insert`](cmt_statistics_tool/insert) files contain the logic of importing the CMT exports.
+- The [`statistics`](cmt_statistics_tool/statistics) files derive statistics as tables and plots from the data.
+- The [`utility`](cmt_statistics_tool/utility) files contain other helpful queries.
+
+### Statistics
+
+1. Reviewers and ratings
+   - Expertise Level vs. Rating: [`s01_01.py`](cmt_statistics_tool/statistics/s01_01.py)
+   - Acceptance Rate over Time: [`s01_02.py`](cmt_statistics_tool/statistics/s01_02.py)
+   - Number of Submissions/Revisions over time: [`s01_03.py`](cmt_statistics_tool/statistics/s01_03.py)
+   - Fraction of accepted or to be revised Papers per Paper Category: [`s01_04.py`](cmt_statistics_tool/statistics/s01_04.py)
+2. Paper status
+   - Status of papers per category: [`s02_01.py`](cmt_statistics_tool/statistics/s02_01.py)
+   - Status of papers: [`s02_02.py`](cmt_statistics_tool/statistics/s02_02.py)
+   - Status of papers per primary subject area: [`s02_03.py`](cmt_statistics_tool/statistics/s02_03.py)
+   - Status of papers per number of authors: [`s02_04.py`](cmt_statistics_tool/statistics/s02_04.py)
+3. Other
+   - Number of papers per distinct affiliations (email domains): [`s03_01.py`](cmt_statistics_tool/statistics/s03_01.py)
+   - Number of papers per country/region: [`s03_02.py`](cmt_statistics_tool/statistics/s03_02.py)
+   - Number of accepted papers per email domain: [`s03_03.py`](cmt_statistics_tool/statistics/s03_03.py)
+   - Number of papers per country/region (pie): [`s03_04.py`](cmt_statistics_tool/statistics/s03_04.py)
