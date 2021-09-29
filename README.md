@@ -219,7 +219,10 @@ There, you can define the names of the files containing the exported data.
 Your database connection is configured in the [`tables/__init__.py`](cmt_statistics_tool/tables/__init__.py) file.
 Its default of `postgres:root@localhost/cmt_statistics_tool` is intended only for testing purposes.
 
-### Statistics
+## Statistics
+
+The statistics are run by running the file containing them.
+The following statistics are available:
 
 1. Reviewers and ratings
    - Expertise Level vs. Rating: [`s01_01.py`](cmt_statistics_tool/statistics/s01_01.py)
