@@ -23,6 +23,15 @@ It was extended and refined at [HPI](https://hpi.de/) for PVLDB volume 14 and [V
 5. [Import](#import) the required data
 6. Run the [statistics](#statistics) or utilities you are interested in
 
+### Organization
+
+The project is structured into tables, insert, statistics and utility.
+
+- The [`tables`](cmt_statistics_tool/tables) files are an ORM definition of the database tables.
+- The [`insert`](cmt_statistics_tool/insert) files contain the logic of importing the CMT exports.
+- The [`statistics`](cmt_statistics_tool/statistics) files derive statistics as tables and plots from the data.
+- The [`utility`](cmt_statistics_tool/utility) files contain other helpful queries.
+
 ## Setup
 
 This project uses Python version `3.9.1`.
@@ -209,15 +218,6 @@ Running it will delete all tables, create them, and insert all data.
 There, you can define the names of the files containing the exported data.
 Your database connection is configured in the [`tables/__init__.py`](cmt_statistics_tool/tables/__init__.py) file.
 Its default of `postgres:root@localhost/cmt_statistics_tool` is intended only for testing purposes.
-
-## Organization
-
-The project is structured into tables, insert, statistics and utility.
-
-- The [`tables`](cmt_statistics_tool/tables) files are an ORM definition of the database tables.
-- The [`insert`](cmt_statistics_tool/insert) files contain the logic of importing the CMT exports.
-- The [`statistics`](cmt_statistics_tool/statistics) files derive statistics as tables and plots from the data.
-- The [`utility`](cmt_statistics_tool/utility) files contain other helpful queries.
 
 ### Statistics
 
