@@ -83,102 +83,124 @@ Please convert them to `.xlsx` beforehand, for example by using Excel's "Save As
 If your export columns are named differently than the schema, you must change the [insert logic](cmt_statistics_tool/insert).
 If you have additional columns or do not have some columns in your export, you must change the [insert logic](cmt_statistics_tool/insert) as well as the [table schema](cmt_statistics_tool/tables).
 For each of the following files, a script dealing with the insert is in the [insert directory](cmt_statistics_tool/insert).
+If any of these can be null, none, n/a, or any other special value, consider replacing them with an empty string in the [insert logic](cmt_statistics_tool/insert) scripts (see function `fillna_strs`).
 Currently, the schema of the required data is as follows:
 
 - People: TSV file
-  - First Name
-  - Middle Initial (optional)
-  - Last Name
-  - E-mail
-  - Organization
-  - Country
-  - Google Scholar
-  - URL
-  - Semantic Scholar URL
-  - DBLP URL
-  - Domain Conflicts
+  - `First Name`: str
+  - `Middle Initial (optional)`: str
+  - `Last Name`: str
+  - `E-mail`: str
+  - `Organization`: str
+  - `Country`: str
+  - `Google Scholar`: str
+  - `URL`: str
+  - `Semantic Scholar URL`: str
+  - `DBLP URL`: str
+  - `Domain Conflicts`: str
 - Papers: XLSX file with multiple sheets. Sheet names correspond to track names, revision tracks have the Suffix "Revision".
-  - Paper ID
-  - Created
-  - Last Modified
-  - Paper Title
-  - Abstract
-  - Primary Contact Author Name
-  - Primary Contact Author Email
-  - Authors
-  - Author Names
-  - Author Emails
-  - Track Name
-  - Primary Subject Area
-  - Secondary Subject Areas
-  - Conflicts
-  - Domains
-  - Assigned
-  - Completed
-  - % Completed
-  - Bids
-  - Discussion
-  - Status
-  - Requested For Author Feedback
-  - Author Feedback Submitted?
-  - Requested For Camera Ready
-  - Camera Ready Submitted?
-  - Requested For Presentation
-  - Files
-  - Number of Files
-  - Supplementary Files
-  - Number of Supplementary Files
-  - Reviewers
-  - Reviewer Emails
-  - MetaReviewers
-  - MetaReviewer Emails
-  - SeniorMetaReviewers
-  - SeniorMetaReviewerEmails
-  - Q1 (PVLDB does not allow papers previously rejected from PVLDB to be resubmitted within 12 months of the original submission date.)
-  - Q3 (Conflict)
-  - Q4 (Special category)
-  - Q7 (Authors)
-  - Q8 (Availability and Reproducibility)
+  - `Paper ID`: int
+  - `Created`: str
+  - `Last Modified`: str
+  - `Paper Title`: str
+  - `Abstract`: str
+  - `Primary Contact Author Name`: str
+  - `Primary Contact Author Email`: str
+  - `Authors`: str
+  - `Author Names`: str
+  - `Author Emails`: str
+  - `Track Name`: str
+  - `Primary Subject Area`: str
+  - `Secondary Subject Areas`: str
+  - `Conflicts`: int
+  - `Domains`: str
+  - `Assigned`: int
+  - `Completed`: int
+  - `% Completed`: str
+  - `Bids`: int
+  - `Discussion`: str
+  - `Status`: str
+  - `Requested For Author Feedback`: str
+  - `Author Feedback Submitted?`: str
+  - `Requested For Camera Ready`: str
+  - `Camera Ready Submitted?`: str
+  - `Requested For Presentation`: str
+  - `Files`: str
+  - `Number of Files`: int
+  - `Supplementary Files`: str
+  - `Number of Supplementary Files`: int
+  - `Reviewers`: str
+  - `Reviewer Emails`: str
+  - `MetaReviewers`: str
+  - `MetaReviewer Emails`: str
+  - `SeniorMetaReviewers`: str
+  - `SeniorMetaReviewerEmails`: str
+  - `Q1 (PVLDB does not allow papers previously rejected from PVLDB to be resubmitted within 12 months of the original submission date.)`: str
+  - `Q3 (Conflict)`: str
+  - `Q4 (Special category)`: str
+  - `Q7 (Authors)`: str
+  - `Q8 (Availability and Reproducibility)`: str
 - Reviews: XLSX file with multiple sheets. Sheet names correspond to track names, revision tracks have the Suffix "Revision".
-  - Paper ID
-  - Paper Title
-  - Reviewer Name
-  - Reviewer Email
-  - Q1 (Overall Rating)
-  - Q1 (Overall Rating - Value)
-  - Q2 (Relevant for PVLDB)
-  - Q3 (Are there specific revisions that could raise your overall rating?)
-  - Q4 (Flavor of Regular Research Paper. Please indicate which flavor or flavors best describe the paper.)
-  - Q5 (Summary of the paper (what is being proposed and in what context) and a brief justification of your overall recommendation. One solid paragraph.)
-  - Q6 (Three (or more) strong points about the paper. Please be precise and explicit; clearly explain the value and nature of the contribution.)
-  - Q7 (Three (or more) weak points about the paper. Please clearly indicate whether the paper has any mistakes, missing related work, or results that cannot be considered a contribution; write it so that the authors can understand what is seen as negative.)
-  - Q8 (Novelty. Please give a high novelty ranking to papers on new topics, opening new fields, or proposing truly new ideas; assign medium ratings to delta papers and papers on well-known topics but still with some valuable contribution.)
-  - Q9 (Significance)
-  - Q10 (Technical Depth and Quality of Content)
-  - Q11 (Experiments)
-  - Q12 (Presentation)
-  - Q13 (Detailed Evaluation (Contribution, Pros/Cons, Errors); please number each point and please provide as constructive feedback as possible.)
-  - Q14 (Reproducibility. If the authors have provided supplemental material (data, code, etc.), is the information likely to be sufficient to understand and to reproduce the experiments? Otherwise, do the authors provide sufficient technical details in the paper to support reproducibility? Note that we do not expect actual reproducibility experiments, but rather a verification that the material is reasonable in scope and content.)
-  - Q15 (Revision. If revision is required, list specific required revisions you seek from the authors. Please number each point.)
-  - Q16 (Rate your confidence in this review.)
-  - Q16 (Rate your confidence in this review. - Value)
-  - Q17 (Confidential comments for the PC Chairs. Please add any information that may help us reach a decision.)
-  - Q18 (Name and affiliation of external expert (!) reviewer (if applicable).)
-  - Q19 (I understand that I am allowed to discuss a paper submission with a trainee for the purpose of teaching them how to review papers. I understand that (a) I am responsible to ensure that there is no COI according to the rules published at PVLDB.org between the trainee and any of the authors of the paper. (b) I have informed the trainee about the confidentiality of the content of the paper. (c) I am solely responsible for the final review. [If the trainee contributed significantly to the paper review, please list them above as external reviewer].)
+  - `Paper ID`: int
+  - `Paper Title`: str
+  - `Reviewer Name`: str
+  - `Reviewer Email`: str
+  - `Q1 (Overall Rating)`: str
+  - `Q1 (Overall Rating - Value)`: int
+  - `Q2 (Relevant for PVLDB)`: str
+  - `Q3 (Are there specific revisions that could raise your overall rating?)`: str
+  - `Q4 (Flavor of Regular Research Paper. Please indicate which flavor or flavors best describe the paper.)`: str
+  - `Q5 (Summary of the paper (what is being proposed and in what context) and a brief justification of your overall recommendation. One solid paragraph.)`: str
+  - `Q6 (Three (or more) strong points about the paper. Please be precise and explicit; clearly explain the value and nature of the contribution.)`: str
+  - `Q7 (Three (or more) weak points about the paper. Please clearly indicate whether the paper has any mistakes, missing related work, or results that cannot be considered a contribution; write it so that the authors can understand what is seen as negative.)`: str
+  - `Q8 (Novelty. Please give a high novelty ranking to papers on new topics, opening new fields, or proposing truly new ideas; assign medium ratings to delta papers and papers on well-known topics but still with some valuable contribution.)`: str
+  - `Q9 (Significance)`: str
+  - `Q10 (Technical Depth and Quality of Content)`: str
+  - `Q11 (Experiments)`: str
+  - `Q12 (Presentation)`: str
+  - `Q13 (Detailed Evaluation (Contribution, Pros/Cons, Errors); please number each point and please provide as constructive feedback as possible.)`: str
+  - `Q14 (Reproducibility. If the authors have provided supplemental material (data, code, etc.), is the information likely to be sufficient to understand and to reproduce the experiments? Otherwise, do the authors provide sufficient technical details in the paper to support reproducibility? Note that we do not expect actual reproducibility experiments, but rather a verification that the material is reasonable in scope and content.)`: str
+  - `Q15 (Revision. If revision is required, list specific required revisions you seek from the authors. Please number each point.)`: str
+  - `Q16 (Rate your confidence in this review.)`: str
+  - `Q16 (Rate your confidence in this review. - Value)`: int
+  - `Q17 (Confidential comments for the PC Chairs. Please add any information that may help us reach a decision.)`: str
+  - `Q18 (Name and affiliation of external expert (!) reviewer (if applicable).)`: str
+  - `Q19 (I understand that I am allowed to discuss a paper submission with a trainee for the purpose of teaching them how to review papers. I understand that (a) I am responsible to ensure that there is no COI according to the rules published at PVLDB.org between the trainee and any of the authors of the paper. (b) I have informed the trainee about the confidentiality of the content of the paper. (c) I am solely responsible for the final review. [If the trainee contributed significantly to the paper review, please list them above as external reviewer].)`: str
+- Reviews with sheet name suffix "Revision":
+  - `Paper ID`: int
+  - `Paper Title`: str
+  - `Reviewer Name`: str
+  - `Reviewer Email`: str
+  - `Q1 (Final and Overall Recommendation)`: str
+  - `Q1 (Final and Overall Recommendation - Value)`: int
+  - `Q3 (Did the authors satisfactorily address the revision requirements identified in the meta-review of the original submission?)`: str
+  - `Q3 (Did the authors satisfactorily address the revision requirements identified in the meta-review of the original submission? - Value)`: int
+  - `Q5 (Justify your answer to the above question by briefly addressing key revision items.)`: str
+  - `Q6 (Additional comments to the authors on the revised version of the paper)`: str
+  - `Q18 (Confidential Comments for the PC Chairs. Please add any information that may help us reach a decision.)`: str
 - Metareviews: XLSX file with multiple sheets. Sheet names correspond to track names, revision tracks have the Suffix "Revision".
-  - Paper ID
-  - Paper Title
-  - Meta-Reviewer Name
-  - Meta-Reviewer Email
-  - Q1 (Overall Rating)
-  - Q1 (Overall Rating - Value)
-  - Q2 (Summary Comments)
+  - `Paper ID`: int
+  - `Paper Title`: str
+  - `Meta-Reviewer Name`: str
+  - `Meta-Reviewer Email`: str
+  - `Q1 (Overall Rating)`: str
+  - `Q1 (Overall Rating - Value)`: int
+  - `Q2 (Summary Comments)`: str
+  - `Q3 (Revision Items)`: str
+- Metareviews with sheet name suffix "Revision":
+  - `Paper ID`: int
+  - `Paper Title`: str
+  - `Meta-Reviewer Name`: str
+  - `Meta-Reviewer Email`: str
+  - `Q1 (Overall Rating)`: str
+  - `Q1 (Overall Rating - Value)`: int
+  - `Q2 (Detailed Comments)`: str
 - Seniormetareviews: XLSX file with multiple sheets. Sheet names correspond to track names, revision tracks have the Suffix "Revision".
   - currently not used
 - Mapping: XLSX file
-  - Revision ID
-  - OriginalSubmission ID
-  - Revision Title
+  - `Revision ID`: str
+  - `OriginalSubmission ID`: str
+  - `Revision Title`: str
 
 # Import
 
