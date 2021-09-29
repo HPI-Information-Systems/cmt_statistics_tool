@@ -1,7 +1,7 @@
 # CMTStat - a CMT Statistics Tool
 
-[![CI workflow](https://github.com/fabianhe/cmt_statistics_tool/actions/workflows/test.yaml/badge.svg)](https://github.com/fabianhe/cmt_statistics_tool/actions/workflows/test.yaml)
-[![Tokei](https://tokei.rs/b1/github/fabianhe/cmt_statistics_tool)](https://tokei.rs)
+[![CI workflow](https://github.com/HPI-Information-Systems/cmt_statistics_tool/actions/workflows/test.yaml/badge.svg)](https://github.com/HPI-Information-Systems/cmt_statistics_tool/actions/workflows/test.yaml)
+[![Tokei](https://tokei.rs/b1/github/HPI-Information-Systems/cmt_statistics_tool)](https://tokei.rs)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 The conference management tool [CMT](https://cmt3.research.microsoft.com/), hosted by Microsoft Research, is a popular tool to manage submissions, the reviewing process, and camrea-ready-copy preparation for scientific conferences. CMT provides various CSV and XLS export capabilities about papers, reviewers, authors, etc.
