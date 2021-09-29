@@ -1,4 +1,4 @@
-# CMTStat: CMT Statistics Tool
+# CMTStat - a CMT Statistics Tool
 
 [![CI workflow](https://github.com/fabianhe/cmt_statistics_tool/actions/workflows/test.yaml/badge.svg)](https://github.com/fabianhe/cmt_statistics_tool/actions/workflows/test.yaml)
 [![Tokei](https://tokei.rs/b1/github/fabianhe/cmt_statistics_tool)](https://tokei.rs)
@@ -9,7 +9,7 @@ The conference management tool [CMT](https://cmt3.research.microsoft.com/), host
 The CMT Statistics Tool is a Python application and PostgreSQL database for importing such CMT data, deriving and plotting various statistics and running utility queries.
 By harmonizing CMT exports into a common schema, it enables deep analysis of conference submissions.
 Common use cases, such as viewing submissions by date, country, affiliation, or finding differences in acceptance rates over time are included.
-The easiest way to get started using the CMT Statistics Tool for your conference is by forking this repository and going through the Setup below.
+The easiest way to get started using the CMT Statistics Tool for your conference is by forking this repository and going through the Setup below ([getting started](#getting-started)).
 
 This repository is based on initial work by Anna and [Magda Balazinska](https://www.cs.washington.edu/people/faculty/magda) for [PVLDB](http://vldb.org/pvldb/) volume 13 and [VLDB 2020](https://vldb2020.org/).
 It was extended and refined at [HPI](https://hpi.de/) for PVLDB volume 14 and [VLDB 2021](https://vldb.org/2021/). Its current form is intended to be as general as possible, but as each conference is different, slight adaptations will be necessary.
@@ -47,23 +47,23 @@ python --version
 python -m pip install --upgrade pip
 ```
 
-For managing the Python environment, we use [Pipenv](https://github.com/pypa/pipenv).
+For managing the Python environment, we use [poetry](https://github.com/python-poetry/poetry).
 Install it as follows:
 
-```bash
-python -m pip install --upgrade pipenv
+```console
+$ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
 ```
 
-Initialize your Pipenv environment:
+Initialize your Poetry environment and install the required python packages:
 
-```bash
-python -m pipenv --python 3.9.1
+```console
+$ poetry install
 ```
 
-Then, install the required python packages:
+Optionally install the [pre-commit](https://github.com/pre-commit/pre-commit) hooks:
 
-```bash
-pipenv sync --dev
+```console
+$ poetry run pre-commit install
 ```
 
 Additionally, we use [Black](https://github.com/psf/black) as a formatter ([nb-black](https://github.com/dnanhkhoa/nb_black) for notebooks), [Flake8](https://github.com/PyCQA/flake8) as a linter, and [Mypy](https://github.com/python/mypy) for static typing.
