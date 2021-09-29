@@ -211,7 +211,7 @@ Currently, the schema of the required data is as follows:
   - `OriginalSubmission ID`: str
   - `Revision Title`: str
 
-# Import
+## Import
 
 The main entrypoint for building the tables and importing the data is the [`main.py`](cmt_statistics_tool/main.py) file.
 Running it will delete all tables, create them, and insert all data.
