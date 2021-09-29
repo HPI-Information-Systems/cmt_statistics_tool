@@ -15,15 +15,6 @@ def read_original_revision(path: str) -> Tuple[DataFrame, DataFrame]:
         name = str(df.columns[0]).strip()
         df.columns = df.iloc[1]
         df.drop(df.index[:2], inplace=True)
-        try:
-            df.rename(
-                columns={
-                    "Q14 (Reproducibility. If the authors have provided supplemental material (data, code, etc.), is the information likely to be sufficient to understand and to reproduce the experiments? Otherwise, do the authors provide sufficient technical details in the paper to support reproducibility? Note that we do not expect actual reproducibility experiments, but rather a verification that the material is reasonable in scope and content.)": "Q14 (Supplemental material. If the authors have provided supplemental material (data, code, etc.,), is the information likely to be sufficient to understand and to reproduce the experiments? Note that we do not expect actual reproducibility experiments, but rather a verification that the files are in fact there and are reasonable in scope and content.)"
-                },
-                inplace=True,
-            )
-        except KeyError:
-            pass
         if name.endswith("Revision"):
             revision.append(df)
         else:
