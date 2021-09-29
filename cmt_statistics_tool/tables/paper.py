@@ -19,6 +19,7 @@ if TYPE_CHECKING:
         SubmissionSeniormetareview,
     )
 
+# Change this to your conference's workflow
 SubmissionStatus = Enum(
     "SubmissionStatus",
     (
@@ -30,6 +31,8 @@ SubmissionStatus = Enum(
         "Withdrawn",
     ),
 )
+
+# Change this to your conference's workflow
 RevisionStatus = Enum("RevisionStatus", ("Accept", "Awaiting Decision", "Reject"))
 
 

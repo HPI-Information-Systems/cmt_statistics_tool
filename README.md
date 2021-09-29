@@ -92,7 +92,6 @@ Please convert them to `.xlsx` beforehand, for example by using Excel's "Save As
 If your export columns are named differently than the schema, you must change the [insert logic](cmt_statistics_tool/insert).
 If you have additional columns or do not have some columns in your export, you must change the [insert logic](cmt_statistics_tool/insert) as well as the [table schema](cmt_statistics_tool/tables).
 For each of the following files, a script dealing with the insert is in the [insert directory](cmt_statistics_tool/insert).
-If any of these can be null, none, n/a, or any other special value, consider replacing them with an empty string in the [insert logic](cmt_statistics_tool/insert) scripts (see function `fillna_strs`).
 Currently, the schema of the required data is as follows:
 
 - People: TSV file
@@ -210,6 +209,10 @@ Currently, the schema of the required data is as follows:
   - `Revision ID`: str
   - `OriginalSubmission ID`: str
   - `Revision Title`: str
+
+If any of these can be null, none, n/a, or any other special value, consider replacing them with an empty string in the [insert logic](cmt_statistics_tool/insert) scripts (see function `fillna_strs`).
+Note that some values are very specific to a conference's workflow, in particular the submission and revision status.
+If you do not support major and minor revisions, please list the possibilities in the respective [table schema](cmt_statistics_tool/tables/paper.py).
 
 ## Import
 
