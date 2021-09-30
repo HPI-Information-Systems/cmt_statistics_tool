@@ -217,10 +217,10 @@ If you do not support major and minor revisions, please list the possibilities i
 ## Import
 
 The main entrypoint for building the tables and importing the data is the [`main.py`](cmt_statistics_tool/main.py) file.
-Running it will delete all tables, create them, and insert all data.
+Running it will drop all tables, re-create them, and insert all data.
 There, you can define the names of the files containing the exported data.
 Your database connection is configured in the [`tables/__init__.py`](cmt_statistics_tool/tables/__init__.py) file.
-Its default of `postgres:root@localhost/cmt_statistics_tool` is intended only for testing purposes.
+Its default of `postgres:root@localhost/cmt_statistics_tool` is intended only for testing purposes - please change.
 
 ## Statistics
 
