@@ -94,7 +94,7 @@ If you have additional columns or do not have some columns in your export, you m
 For each of the following files, a script dealing with the insert is in the [insert directory](cmt_statistics_tool/insert).
 Currently, the schema of the required data is as follows:
 
-- People: TSV file
+- People: TSV file (we identify persons by their First Name, Middle Initial, Last Name, and E-mail)
   - `First Name`: str
   - `Middle Initial (optional)`: str
   - `Last Name`: str
@@ -107,7 +107,7 @@ Currently, the schema of the required data is as follows:
   - `DBLP URL`: str
   - `Domain Conflicts`: str
 - Papers: XLSX file with multiple sheets. Sheet names correspond to track names, revision tracks have the Suffix "Revision".
-  - `Paper ID`: int
+  - `Paper ID`: int (primary key)
   - `Created`: str
   - `Last Modified`: str
   - `Paper Title`: str
