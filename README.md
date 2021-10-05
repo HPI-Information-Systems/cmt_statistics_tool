@@ -8,11 +8,13 @@ The conference management tool [CMT](https://cmt3.research.microsoft.com/), host
 
 The CMT Statistics Tool is a Python application and PostgreSQL database for importing such CMT data, deriving and plotting various statistics and running utility queries.
 By harmonizing CMT exports into a common schema, it enables deep analysis of conference submissions.
-Common use cases, such as viewing submissions by date, country, affiliation, or finding differences in acceptance rates over time are included.
+Common use cases, such as viewing submissions by date, country, affiliation, or finding differences in acceptance rates over time are included (see example images below).
 The easiest way to get started using the CMT Statistics Tool for your conference is by forking this repository and going through the Setup below ([getting started](#getting-started)).
 
 This repository is based on initial work by Anna and [Magda Balazinska](https://www.cs.washington.edu/people/faculty/magda) for [PVLDB](http://vldb.org/pvldb/) volume 13 and [VLDB 2020](https://vldb2020.org/).
 It was extended and refined at [HPI](https://hpi.de/) for PVLDB volume 14 and [VLDB 2021](https://vldb.org/2021/). Its current form is intended to be as general as possible, but as each conference is different, slight adaptations will be necessary.
+
+![Distribution by subject area](SubjectAreas.PNG?raw=true)![Distribution by number of authors](AuthorCount.PNG?raw=true)![Distribution by country](Countries.PNG?raw=true)
 
 ## Getting started
 
